@@ -8,5 +8,13 @@
 </head>
 <body class="bg-base-200 min-h-screen">
     @yield('content')
+    <x-confirm-modal />
+    <x-toast />
+    @if (session('success'))
+        <div x-data x-init="$store.toast.show('{{ session('success') }}', 'success')"></div>
+    @endif
+    @if (session('error'))
+        <div x-data x-init="$store.toast.show('{{ session('error') }}', 'error')"></div>
+    @endif
 </body>
 </html>
