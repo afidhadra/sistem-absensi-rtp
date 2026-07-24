@@ -1,6 +1,16 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Admin\DosenController;
+use App\Http\Controllers\Admin\FakultasController;
+use App\Http\Controllers\Admin\JadwalController;
+use App\Http\Controllers\Admin\KelasController;
+use App\Http\Controllers\Admin\MahasiswaController;
+use App\Http\Controllers\Admin\MataKuliahController;
+use App\Http\Controllers\Admin\ProgramStudiController;
+use App\Http\Controllers\Admin\SemesterController;
+use App\Http\Controllers\Admin\TahunAkademikController;
+use App\Http\Controllers\Admin\TeachingAssignmentController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +28,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [AdminDashboard::class, 'index'])
         ->middleware('role:admin')
         ->name('admin.dashboard');
+
+    Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::resource('fakultas', FakultasController::class)->except(['show']);
+        Route::resource('prodi', ProgramStudiController::class)->parameters(['prodi' => 'prodi'])->except(['show']);
+        Route::resource('semester', SemesterController::class)->except(['show']);
+        Route::resource('tahun-akademik', TahunAkademikController::class)->except(['show']);
+        Route::resource('kelas', KelasController::class)->parameters(['kelas' => 'kela'])->except(['show']);
+        Route::resource('mata-kuliah', MataKuliahController::class)->parameters(['mata-kuliah' => 'mata_kuliah'])->except(['show']);
+        Route::resource('dosen', DosenController::class)->except(['show']);
+        Route::resource('mahasiswa', MahasiswaController::class)->except(['show']);
+        Route::resource('teaching-assignment', TeachingAssignmentController::class)->parameters(['teaching-assignment' => 'teaching_assignment'])->except(['show']);
+        Route::resource('jadwal', JadwalController::class)->except(['show']);
+    });
 
     Route::get('/dosen/dashboard', fn () => view('dosen.dashboard'))
         ->middleware('role:dosen')
