@@ -1,81 +1,76 @@
 @extends('layouts.mahasiswa')
 
 @section('content-body')
-@if (session('success'))
-    <div class="mb-4 rounded-lg bg-green-50 p-4 text-center text-lg font-bold text-green-700">{{ session('success') }}</div>
-@endif
-@if (session('error'))
-    <div class="mb-4 rounded-lg bg-red-50 p-4 text-center text-red-700">{{ session('error') }}</div>
-@endif
+<x-flash />
 
-<h1 class="mb-2 text-2xl font-bold text-gray-800">Dashboard</h1>
-<p class="mb-6 text-sm text-gray-500">{{ now()->locale('id')->isoFormat('dddd, D MMMM Y') }} — {{ $mahasiswa->kelas?->kode ?? '-' }}</p>
+<div class="space-y-6">
+    <div>
+        <h1 class="text-2xl font-bold text-base-content">Dashboard</h1>
+        <p class="text-sm text-base-content/50">{{ now()->locale('id')->isoFormat('dddd, D MMMM Y') }} - {{ $mahasiswa->kelas?->kode ?? '-' }}</p>
+    </div>
 
-<div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-    {{-- Today schedule --}}
-    <section>
-        <h2 class="mb-3 text-lg font-semibold text-gray-800">Jadwal Hari Ini</h2>
-        @forelse ($todaySchedule as $j)
-            <div class="mb-3 rounded-lg border bg-white p-4 shadow-sm">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h3 class="font-semibold text-gray-800">{{ $j->teachingAssignment->mataKuliah->nama }}</h3>
-                        <p class="text-sm text-gray-500">{{ $j->teachingAssignment->dosen->nama }} — {{ substr($j->jam_mulai, 0, 5) }}-{{ substr($j->jam_selesai, 0, 5) }} ({{ $j->ruangan ?? '-' }})</p>
+    {{-- Stat --}}
+    <div class="flex items-center gap-4">
+        <div class="radial-progress text-primary" style="--value:{{ $persentase }};" role="progressbar">
+            <span class="text-sm font-bold">{{ $persentase }}%</span>
+        </div>
+        <div>
+            <p class="text-sm text-base-content/50">Kehadiran kamu</p>
+            <p class="text-xs text-base-content/40">{{ $riwayat->count() }} sesi absen</p>
+        </div>
+    </div>
+
+    {{-- Today Schedule --}}
+    <div>
+        <h2 class="text-sm font-semibold text-base-content/70 mb-3">Jadwal Hari Ini</h2>
+        <div class="space-y-3">
+            @forelse ($todaySchedule as $j)
+                <div class="card bg-base-100 shadow-sm">
+                    <div class="card-body p-4 flex flex-row items-center justify-between">
+                        <div>
+                            <h3 class="font-semibold text-sm">{{ $j->teachingAssignment->mataKuliah->nama }}</h3>
+                            <p class="text-xs text-base-content/50">{{ substr($j->jam_mulai, 0, 5) }}-{{ substr($j->jam_selesai, 0, 5) }} - {{ $j->ruangan ?? '-' }}</p>
+                        </div>
+                        <div>
+                            @if (in_array($j->teaching_assignment_id, $attendedTaIds))
+                                <span class="badge badge-success badge-sm">Hadir</span>
+                            @elseif (!empty($activeOtpsByTa[$j->teaching_assignment_id]))
+                                <button onclick="document.getElementById('otp-{{ $j->id }}').classList.toggle('hidden')" class="btn btn-primary btn-sm">Absen</button>
+                            @else
+                                <span class="badge badge-ghost badge-sm">Menunggu OTP</span>
+                            @endif
+                        </div>
                     </div>
-                    <div>
-                        @if (in_array($j->teaching_assignment_id, $attendedTaIds))
-                            <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">Hadir</span>
-                        @elseif (!empty($activeOtpsByTa[$j->teaching_assignment_id]))
-                            <button onclick="document.getElementById('otp-{{ $j->id }}').classList.toggle('hidden')"
-                                class="rounded bg-blue-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-700">Absen</button>
-                            <form id="otp-{{ $j->id }}" method="POST" action="{{ route('mahasiswa.absensi') }}" class="hidden mt-2">
-                                @csrf
-                                <input type="hidden" name="jadwal_id" value="{{ $j->id }}">
-                                <input type="hidden" name="teaching_assignment_id" value="{{ $j->teaching_assignment_id }}">
-                                <input type="text" name="kode" placeholder="Kode OTP" maxlength="6" class="w-full rounded border px-2 py-1 text-xs mb-1" required>
-                                <button type="submit" class="w-full rounded bg-green-600 px-2 py-1 text-xs font-medium text-white hover:bg-green-700">Kirim</button>
-                            </form>
-                        @else
-                            <span class="text-xs text-gray-400">Tidak ada OTP aktif</span>
-                        @endif
-                    </div>
+                    @if (!empty($activeOtpsByTa[$j->teaching_assignment_id]) && !in_array($j->teaching_assignment_id, $attendedTaIds))
+                        <form id="otp-{{ $j->id }}" method="POST" action="{{ route('mahasiswa.absensi') }}" class="hidden px-4 pb-4">
+                            @csrf
+                            <input type="hidden" name="teaching_assignment_id" value="{{ $j->teaching_assignment_id }}">
+                            <div class="join w-full">
+                                <input type="text" name="kode" placeholder="Kode OTP 6 digit" maxlength="6" class="input input-bordered join-item w-full text-center font-mono tracking-widest" required>
+                                <button type="submit" class="btn btn-primary join-item">Kirim</button>
+                            </div>
+                        </form>
+                    @endif
                 </div>
-            </div>
-        @empty
-            <p class="rounded-lg bg-white p-4 text-sm text-gray-500 shadow-sm">Tidak ada jadwal hari ini.</p>
-        @endforelse
-    </section>
+            @empty
+                <div class="text-center py-8 text-base-content/40 text-sm">Tidak ada jadwal hari ini.</div>
+            @endforelse
+        </div>
+    </div>
 
-    {{-- Stats --}}
-    <section>
-        <h2 class="mb-3 text-lg font-semibold text-gray-800">Kehadiran</h2>
-        <div class="rounded-lg bg-white p-4 shadow-sm">
-            @php $totalSessions = $todaySchedule->count() + $riwayat->count(); @endphp
-            <p class="text-3xl font-bold text-gray-800">{{ $persentase }}%</p>
-            <p class="text-sm text-gray-500">Kehadiran ({{ $riwayat->count() }} dari {{ $totalSessions }} sesi)</p>
-            <div class="mt-3 h-2 w-full overflow-hidden rounded-full bg-gray-200">
-                <div class="h-full rounded-full bg-green-500 transition-all" style="width: {{ $persentase }}%"></div>
+    {{-- Recent --}}
+    @if ($riwayat->isNotEmpty())
+        <div>
+            <h2 class="text-sm font-semibold text-base-content/70 mb-3">Riwayat Terbaru</h2>
+            <div class="space-y-2">
+                @foreach ($riwayat->take(5) as $att)
+                    <div class="flex items-center justify-between text-sm py-2 border-b border-base-200 last:border-0">
+                        <span>{{ $att->teachingAssignment?->mataKuliah?->nama ?? '-' }}</span>
+                        <span class="text-base-content/40">{{ $att->attended_at->format('d/m H:i') }}</span>
+                    </div>
+                @endforeach
             </div>
         </div>
-
-        @if ($riwayat->isNotEmpty())
-            <h3 class="mb-2 mt-6 text-sm font-semibold text-gray-700">Riwayat Terbaru</h3>
-            <div class="overflow-hidden rounded-lg bg-white shadow-sm">
-                <table class="w-full text-left text-xs">
-                    <thead class="border-b bg-gray-50 text-gray-500 uppercase">
-                        <tr><th class="px-3 py-2">Matkul</th><th class="px-3 py-2">Waktu</th></tr>
-                    </thead>
-                    <tbody class="divide-y">
-                        @foreach ($riwayat->take(5) as $att)
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-3 py-2">{{ $att->teachingAssignment?->mataKuliah?->nama ?? '-' }}</td>
-                                <td class="px-3 py-2 text-gray-500">{{ $att->attended_at->format('d/m H:i') }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        @endif
-    </section>
+    @endif
 </div>
 @endsection
