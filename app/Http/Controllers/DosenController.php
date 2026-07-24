@@ -19,12 +19,12 @@ class DosenController extends Controller
             ->where('created_by', auth()->id())
             ->where('is_used', false)
             ->where('expires_at', '>', now())
-            ->get();
+            ->paginate(20);
 
         $matkulList = TeachingAssignment::with(['mataKuliah', 'kelas.mahasiswa', 'jadwal', 'otps'])
             ->withCount(['attendances as hadir_count' => fn ($q) => $q])
             ->where('dosen_id', $dosenId)
-            ->get();
+            ->paginate(20);
 
         return view('dosen.dashboard', compact('matkulList', 'activeOtps'));
     }
@@ -78,7 +78,7 @@ class DosenController extends Controller
         $otps = Otp::with('teachingAssignment.mataKuliah')
             ->where('created_by', auth()->id())
             ->orderByDesc('created_at')
-            ->get();
+            ->paginate(20);
 
         return view('dosen.otp-history', compact('otps'));
     }

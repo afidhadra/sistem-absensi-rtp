@@ -3,8 +3,8 @@
 @section('content-body')
 <x-page-header title="Riwayat Absensi" />
 
-<div class="overflow-hidden rounded-xl bg-base-100 shadow">
-    <table class="table table-zebra">
+<div class="overflow-x-auto rounded-xl bg-base-100 shadow">
+    <table class="table table-zebra table-sm">
         <thead>
             <tr><th>Tanggal</th><th>Mata Kuliah</th><th>Dosen</th><th>Waktu</th></tr>
         </thead>
@@ -21,5 +21,9 @@
             @endforelse
         </tbody>
     </table>
+</div>
+
+<div class="mt-3">
+    {{ $riwayat->links() }}
 </div>
 @endsection

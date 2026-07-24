@@ -8,8 +8,8 @@
     <p class="text-sm text-base-content/50">{{ $teachingAssignment->mataKuliah->kode }} - {{ $teachingAssignment->kelas->kode }} - {{ $attendances->count() }}/{{ $teachingAssignment->kelas->mahasiswa->count() }} hadir</p>
 </div>
 
-<div class="overflow-hidden rounded-xl bg-base-100 shadow">
-    <table class="table table-zebra">
+<div class="overflow-x-auto rounded-xl bg-base-100 shadow">
+    <table class="table table-zebra table-sm">
         <thead>
             <tr><th>NIM</th><th>Nama</th><th>Waktu Absen</th></tr>
         </thead>

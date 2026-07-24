@@ -103,7 +103,7 @@ class MahasiswaController extends Controller
             'riwayat' => Attendance::with('teachingAssignment.mataKuliah', 'teachingAssignment.dosen')
                 ->where('mahasiswa_id', auth()->user()->mahasiswa->id)
                 ->orderByDesc('attended_at')
-                ->get(),
+                ->paginate(20),
         ]);
     }
 }
