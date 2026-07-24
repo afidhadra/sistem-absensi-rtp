@@ -1,0 +1,6 @@
+# gitleaks config — exclude vendor/ (third-party code, not ours)
+[allowlist]
+paths = [
+  '''^vendor/''',
+  '''^\.git/''',
+]

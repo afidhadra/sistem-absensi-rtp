@@ -1,0 +1,3 @@
+# vendor/ — third-party packages, not our code
+vendor/laravel/boost/.ai/laravel/skill/laravel-best-practices/rules/config.md:generic-api-key:*
+vendor/symfony/mime/MimeTypes.php:generic-api-key:*
