@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\MahasiswaController as AdminMahasiswaController;
 use App\Http\Controllers\Admin\MataKuliahController;
 use App\Http\Controllers\Admin\ProgramStudiController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SemesterController;
 use App\Http\Controllers\Admin\TahunAkademikController;
 use App\Http\Controllers\Admin\TeachingAssignmentController;
@@ -39,6 +40,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('mahasiswa', AdminMahasiswaController::class)->except(['show']);
         Route::resource('teaching-assignment', TeachingAssignmentController::class)->parameters(['teaching-assignment' => 'teaching_assignment'])->except(['show']);
         Route::resource('jadwal', JadwalController::class)->except(['show']);
+        Route::get('/report', [ReportController::class, 'index'])->name('report.index');
+        Route::get('/report/csv', [ReportController::class, 'csv'])->name('report.csv');
     });
 
     Route::middleware('role:dosen')->prefix('dosen')->name('dosen.')->group(function () {

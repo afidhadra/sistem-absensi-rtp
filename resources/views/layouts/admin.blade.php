@@ -13,6 +13,7 @@
         ['route' => 'admin.mahasiswa.index', 'label' => 'Mahasiswa'],
         ['route' => 'admin.teaching-assignment.index', 'label' => 'Penugasan Dosen'],
         ['route' => 'admin.jadwal.index', 'label' => 'Jadwal'],
+        ['route' => 'admin.report.index', 'label' => 'Laporan'],
     ];
 @endphp
 
