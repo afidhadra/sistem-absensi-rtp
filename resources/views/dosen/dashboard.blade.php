@@ -44,8 +44,7 @@
 
                     {{-- Active OTP --}}
                     @php
-                        $active = $ta->otp->where('is_used', false)->where('expires_at', '>', now())->first();
-                        $hadir = App\Models\Attendance::where('teaching_assignment_id', $ta->id)->count();
+                        $active = $ta->otps->where('is_used', false)->where('expires_at', '>', now())->first();
                     @endphp
                     @if ($active)
                         <div class="mt-3 bg-warning/10 border border-warning/30 rounded-lg p-3">
@@ -62,7 +61,7 @@
                             <input type="hidden" name="teaching_assignment_id" value="{{ $ta->id }}">
                             <button class="btn btn-primary btn-sm">Generate OTP</button>
                         </form>
-                        <a href="{{ route('dosen.attendance', $ta) }}" class="btn btn-ghost btn-sm">Absensi ({{ $hadir }})</a>
+                        <a href="{{ route('dosen.attendance', $ta) }}" class="btn btn-ghost btn-sm">Absensi ({{ $ta->hadir_count }})</a>
                     </div>
                 </div>
             </div>

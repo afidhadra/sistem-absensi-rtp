@@ -15,17 +15,18 @@ class DosenController extends Controller
     {
         $dosenId = auth()->user()->dosen->id;
 
-        $assignments = TeachingAssignment::with(['mataKuliah', 'kelas', 'semester', 'tahunAkademik', 'jadwal'])
-            ->where('dosen_id', $dosenId)
-            ->get();
-
         $activeOtps = Otp::with('teachingAssignment.mataKuliah')
             ->where('created_by', auth()->id())
             ->where('is_used', false)
             ->where('expires_at', '>', now())
             ->get();
 
-        return view('dosen.dashboard', compact('assignments', 'activeOtps'));
+        $matkulList = TeachingAssignment::with(['mataKuliah', 'kelas.mahasiswa', 'jadwal', 'otps'])
+            ->withCount(['attendances as hadir_count' => fn ($q) => $q])
+            ->where('dosen_id', $dosenId)
+            ->get();
+
+        return view('dosen.dashboard', compact('matkulList', 'activeOtps'));
     }
 
     public function generateOtp(Request $request): RedirectResponse
@@ -62,7 +63,7 @@ class DosenController extends Controller
             abort(403);
         }
 
-        $teachingAssignment->load(['mataKuliah', 'kelas', 'semester', 'tahunAkademik']);
+        $teachingAssignment->load(['mataKuliah', 'kelas.mahasiswa', 'semester', 'tahunAkademik']);
 
         $attendances = Attendance::with('mahasiswa')
             ->where('teaching_assignment_id', $teachingAssignment->id)
