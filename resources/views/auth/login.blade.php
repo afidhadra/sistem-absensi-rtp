@@ -37,9 +37,9 @@
             <form method="POST" action="{{ route('login.store') }}" class="space-y-4">
                 @csrf
                 <div>
-                    <label for="email" class="mb-1 block text-xs font-medium text-base-content/70">Email</label>
-                    <input type="email" id="email" name="email" value="{{ old('email') }}"
-                        class="input input-bordered w-full" placeholder="nama@email.com" required autofocus>
+                    <label for="email" class="mb-1 block text-xs font-medium text-base-content/70">Username</label>
+                    <input type="text" id="email" name="email" value="{{ old('email') }}"
+                        class="input input-bordered w-full" placeholder="admin" required autofocus>
                 </div>
                 <div>
                     <label for="password" class="mb-1 block text-xs font-medium text-base-content/70">Password</label>
