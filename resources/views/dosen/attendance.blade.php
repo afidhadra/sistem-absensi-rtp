@@ -4,8 +4,8 @@
 <x-page-header title="Absensi" />
 
 <div class="mb-4">
-    <h2 class="font-semibold text-base-content">{{ $teachingAssignment->mataKuliah->nama }}</h2>
-    <p class="text-sm text-base-content/50">{{ $teachingAssignment->mataKuliah->kode }} - {{ $teachingAssignment->kelas->kode }} - {{ $attendances->count() }}/{{ $teachingAssignment->kelas->mahasiswa->count() }} hadir</p>
+    <h2 class="text-sm font-semibold text-base-content">{{ $teachingAssignment->mataKuliah->nama }}</h2>
+    <p class="text-xs text-base-content/50">{{ $teachingAssignment->mataKuliah->kode }} - {{ $teachingAssignment->kelas->kode }} - {{ $attendances->count() }}/{{ $teachingAssignment->kelas->mahasiswa->count() }} hadir</p>
 </div>
 
 <div class="overflow-x-auto rounded-xl bg-base-100 shadow">

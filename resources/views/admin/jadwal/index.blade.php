@@ -10,7 +10,7 @@
             <tr><th>Hari</th><th>Jam</th><th>Ruangan</th><th>Dosen</th><th>Matkul</th><th>Kelas</th><th class="text-right">Aksi</th></tr>
         </thead>
         <tbody>
-            @foreach ($items as $item)
+            @forelse ($items as $item)
                 <tr class="hover">
                     <td class="capitalize">{{ $item->hari }}</td>
                     <td class="font-mono">{{ substr($item->jam_mulai, 0, 5) }}-{{ substr($item->jam_selesai, 0, 5) }}</td>
@@ -26,7 +26,9 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr><td colspan="6" class="text-center text-base-content/40 py-8">Belum ada data.</td></tr>
+            @endforelse
         </tbody>
     </table>
 </div>

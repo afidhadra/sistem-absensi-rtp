@@ -10,7 +10,7 @@
             <tr><th>Kode</th><th>Nama</th><th>SKS</th><th>Semester</th><th>Prodi</th><th class="text-right">Aksi</th></tr>
         </thead>
         <tbody>
-            @foreach ($items as $item)
+            @forelse ($items as $item)
                 <tr class="hover">
                     <td class="font-mono">{{ $item->kode }}</td>
                     <td>{{ $item->nama }}</td>
@@ -25,7 +25,9 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr><td colspan="5" class="text-center text-base-content/40 py-8">Belum ada data.</td></tr>
+            @endforelse
         </tbody>
     </table>
 </div>
