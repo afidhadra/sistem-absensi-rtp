@@ -11,7 +11,7 @@
             <h1 class="text-3xl font-bold tracking-tight">RTP<span class="text-primary">.</span></h1>
             <div>
                 <p class="text-xl font-semibold leading-snug">Absensi bukan cuma hadir.<br>Tapi hadir tepat waktu.</p>
-                <p class="mt-2 text-sm text-neutral-400">OTP dibuat dosen, kamu input,<br>5 menit doang. Titip absen? Buset.</p>
+                <p class="mt-2 text-sm text-neutral-400">OTP dibuat dosen, kamu input,<br>5 menit doang. Titip absen? Bye.</p>
             </div>
             <p class="text-xs text-neutral-500">&copy; {{ date('Y') }} Sistem Absensi RTP</p>
         </div>
