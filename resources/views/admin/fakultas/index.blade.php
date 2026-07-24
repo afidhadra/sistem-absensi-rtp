@@ -4,8 +4,8 @@
 <x-page-header title="Fakultas" :action="route('admin.fakultas.create')" />
 <x-flash />
 
-<div class="overflow-hidden rounded-xl bg-base-100 shadow">
-    <table class="table table-zebra table-xs">
+<div class="overflow-hidden rounded-xl bg-base-100 shadow max-w-5xl">
+    <table class="table table-zebra table-sm">
         <thead>
             <tr><th>Kode</th><th>Nama</th><th class="text-right">Aksi</th></tr>
         </thead>
