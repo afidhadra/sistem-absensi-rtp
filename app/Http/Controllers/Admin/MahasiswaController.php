@@ -30,7 +30,7 @@ class MahasiswaController extends Controller
         $data = $request->validate([
             'nim' => 'required|string|max:20|unique:mahasiswa,nim',
             'nama' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email',
+            'email' => 'required|string|max:255|unique:users,email',
             'password' => 'required|string|min:6',
             'kelas_id' => 'nullable|exists:kelas,id',
         ]);
@@ -62,7 +62,7 @@ class MahasiswaController extends Controller
         $data = $request->validate([
             'nim' => 'required|string|max:20|unique:mahasiswa,nim,'.$mahasiswa->id,
             'nama' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,'.$mahasiswa->user_id,
+            'email' => 'required|string|max:255|unique:users,email,'.$mahasiswa->user_id,
             'password' => 'nullable|string|min:6',
             'kelas_id' => 'nullable|exists:kelas,id',
         ]);

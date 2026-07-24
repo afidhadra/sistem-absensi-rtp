@@ -30,7 +30,7 @@ class DosenController extends Controller
         $data = $request->validate([
             'nip' => 'required|string|max:20|unique:dosen,nip',
             'nama' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email',
+            'email' => 'required|string|max:255|unique:users,email',
             'password' => 'required|string|min:6',
             'fakultas_id' => 'nullable|exists:fakultas,id',
         ]);
@@ -62,7 +62,7 @@ class DosenController extends Controller
         $data = $request->validate([
             'nip' => 'required|string|max:20|unique:dosen,nip,'.$dosen->id,
             'nama' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,'.$dosen->user_id,
+            'email' => 'required|string|max:255|unique:users,email,'.$dosen->user_id,
             'password' => 'nullable|string|min:6',
             'fakultas_id' => 'nullable|exists:fakultas,id',
         ]);

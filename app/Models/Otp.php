@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Otp extends Model
 {
+    protected $table = 'otps';
+
     /** @use HasFactory<OtpFactory> */
     use HasFactory;
 
