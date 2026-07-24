@@ -12,6 +12,8 @@ class Jadwal extends Model
     /** @use HasFactory<JadwalFactory> */
     use HasFactory;
 
+    protected $table = 'jadwal';
+
     protected $fillable = ['hari', 'jam_mulai', 'jam_selesai', 'ruangan', 'teaching_assignment_id'];
 
     /**
