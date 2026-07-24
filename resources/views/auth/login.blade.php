@@ -10,8 +10,8 @@
         <div class="relative z-10 flex flex-col justify-between p-12 text-neutral-100">
             <h1 class="text-3xl font-bold tracking-tight">RTP<span class="text-primary">.</span></h1>
             <div>
-                <p class="text-xl font-semibold leading-snug">Absensi real-time<br>berbasis OTP.</p>
-                <p class="mt-2 text-sm text-neutral-400">Dosen generate, mahasiswa input,<br>5 menit berlaku. Titip absen berakhir.</p>
+                <p class="text-xl font-semibold leading-snug">Absensi bukan cuma hadir.<br>Tapi hadir tepat waktu.</p>
+                <p class="mt-2 text-sm text-neutral-400">OTP dibuat dosen, kamu input,<br>5 menit doang. Titip absen? Buset.</p>
             </div>
             <p class="text-xs text-neutral-500">&copy; {{ date('Y') }} Sistem Absensi RTP</p>
         </div>
