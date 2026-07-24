@@ -1,3 +1,52 @@
+# Sistem Absensi Mahasiswa Berbasis OTP (RTP)
+
+Sistem absensi digital menggunakan OTP (Real Time Password) yang dibuat dosen real-time. Mahasiswa harus hadir saat perkuliahan untuk input OTP yang berlaku 5 menit. Menggantikan absensi manual, mengurangi titip absen, menyediakan monitoring real-time.
+
+## User Roles & Permissions
+
+**Admin** — kelola data master: Mahasiswa, Dosen, Mata Kuliah, Kelas, Semester, Tahun Akademik, Teaching Assignment, Akun, lihat semua absensi, statistik, profil.
+
+**Dosen** — dashboard hanya menampilkan mata kuliah yang diampu (dari teaching assignment). Tidak membuat mata kuliah. Bisa: lihat matkul diampu, jadwal mengajar, generate RTP, lihat data absensi, riwayat RTP, profil.
+
+**Mahasiswa** — hanya akses mata kuliah sesuai kelas aktif. Bisa: dashboard, absensi (input OTP), riwayat absensi, profil.
+
+## Business Rules
+
+- Dosen hanya lihat matkul miliknya sendiri. Tidak bisa akses matkul dosen lain.
+- Satu dosen bisa ampu banyak matkul. Satu matkul bisa diajarkan di beberapa kelas.
+- Mahasiswa hanya boleh punya satu kelas aktif.
+- Mahasiswa hanya bisa absensi pada matkul kelasnya yang aktif.
+- OTP berlaku 5 menit sejak generate oleh dosen.
+- Absensi ditolak jika: OTP salah, OTP expired, mahasiswa bukan anggota kelas, sudah absen sebelumnya, matkul/semester/tahun akademik tidak aktif.
+
+## Modules
+
+| Modul | Dikelola | Catatan |
+|-------|----------|---------|
+| Mata Kuliah | Admin | Kode, Nama, SKS, Semester, Tahun Akademik, Prodi, Status |
+| Teaching Assignment | Admin | Dosen + Mata Kuliah + Kelas + Semester + Tahun Akademik |
+| Kelas | Admin | Contoh: TI-1A, TI-1B, TI-2A. Mahasiswa 1 kelas aktif. |
+| Jadwal Kuliah | Admin | Hari, Jam, Ruangan, Dosen, Matkul, Kelas, Semester, Tahun Akademik |
+| RTP (OTP) | Dosen | Generate OTP per matkul, berlaku 5 menit |
+| Absensi | Mahasiswa | Input OTP → validasi → recorded |
+| Laporan | Admin | Filter: mahasiswa/dosen/matkul/kelas/semester/tahun/tanggal. Export PDF/Excel |
+
+## Dashboard per Role
+
+- **Admin**: total mahasiswa, dosen, matkul, kelas, absensi hari ini, grafik kehadiran, aktivitas terbaru
+- **Dosen**: matkul diampu, jadwal hari ini, jumlah mahasiswa, absensi hari ini, RTP aktif
+- **Mahasiswa**: matkul hari ini, status kehadiran, riwayat, persentase kehadiran
+
+## Database Entities
+
+Users, Roles, Mahasiswa, Dosen, Program Studi, Fakultas, Kelas, Semester, Tahun Akademik, Mata Kuliah, Jadwal, Teaching Assignment, Student Enrollment, OTP, Attendance, Activity Logs, Audit Logs, Permissions, Role Permissions.
+
+## Security
+
+RBAC, password hashing, session management, OTP expiration (5 menit), login attempt limiter, audit log, activity log, HTTPS.
+
+---
+
 <laravel-boost-guidelines>
 === foundation rules ===
 
@@ -110,7 +159,7 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 
 # Do Things the Laravel Way
 
-- Use `php artisan make:` commands to create new files (i.e. migrations, controllers, models, etc.). You can list available Artisan commands using `php artisan list` and check their parameters with `php artisan [command] --help`.
+- Use `php artisan make:` commands to create new files (i.e., migrations, controllers, models, etc.). You can list available Artisan commands using `php artisan list` and check their parameters with `php artisan [command] --help`.
 - If you're creating a generic PHP class, use `php artisan make:class`.
 - Pass `--no-interaction` to all Artisan commands to ensure they work without user input. You should also pass the correct `--options` to ensure correct behavior.
 
