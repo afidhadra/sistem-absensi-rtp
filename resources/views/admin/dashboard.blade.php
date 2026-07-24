@@ -2,13 +2,11 @@
 
 @section('content-body')
 <div class="space-y-4">
-    {{-- Welcome --}}
     <div>
         <h1 class="text-xl font-bold text-base-content">Dashboard</h1>
         <p class="text-xs text-base-content/50">{{ now()->locale('id')->isoFormat('dddd, D MMMM Y') }}</p>
     </div>
 
-    {{-- Stats --}}
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <div class="stat bg-base-100 rounded-xl shadow-sm py-3">
             <div class="stat-title text-xs">Mahasiswa</div>
@@ -28,7 +26,25 @@
         </div>
     </div>
 
-    {{-- Quick Actions --}}
+    @if ($todayAttendances)
+        <div>
+            <h2 class="text-xs font-semibold text-base-content/70 mb-2">Absensi Hari Ini</h2>
+            <div class="space-y-2">
+                @foreach ($todayAttendances as $a)
+                    <div class="card bg-base-100 shadow-sm">
+                        <div class="card-body p-3">
+                            <div class="flex items-center justify-between text-xs mb-1">
+                                <span class="font-medium">{{ $a['matkul'] }} · {{ $a['kelas'] }}</span>
+                                <span class="text-base-content/50">{{ $a['hadir'] }}/{{ $a['total'] }}</span>
+                            </div>
+                            <progress class="progress progress-primary w-full" value="{{ $a['hadir'] }}" max="{{ $a['total'] }}"></progress>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     <div class="flex flex-wrap gap-2">
         <a href="{{ route('admin.dosen.create') }}" class="btn btn-outline btn-xs">+ Dosen</a>
         <a href="{{ route('admin.mahasiswa.create') }}" class="btn btn-outline btn-xs">+ Mahasiswa</a>
