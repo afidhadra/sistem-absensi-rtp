@@ -4,7 +4,7 @@
 <x-page-header title="Tahun Akademik" :action="route('admin.tahun-akademik.create')" />
 <x-flash />
 
-<div class="overflow-hidden rounded-xl bg-base-100 shadow max-w-5xl">
+<div class="overflow-hidden rounded-xl bg-base-100 shadow max-w-5xl mx-auto">
     <table class="table table-zebra table-sm">
         <thead>
             <tr><th>Kode</th><th>Nama</th><th>Periode</th><th>Status</th><th class="text-right">Aksi</th></tr>

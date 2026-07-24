@@ -4,7 +4,7 @@
 <x-page-header title="Mata Kuliah" :action="route('admin.mata-kuliah.create')" />
 <x-flash />
 
-<div class="overflow-hidden rounded-xl bg-base-100 shadow max-w-5xl">
+<div class="overflow-hidden rounded-xl bg-base-100 shadow max-w-5xl mx-auto">
     <table class="table table-zebra table-sm">
         <thead>
             <tr><th>Kode</th><th>Nama</th><th>SKS</th><th>Semester</th><th>Prodi</th><th class="text-right">Aksi</th></tr>

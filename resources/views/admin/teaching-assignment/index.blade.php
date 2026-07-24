@@ -4,7 +4,7 @@
 <x-page-header title="Penugasan Dosen" :action="route('admin.teaching-assignment.create')" />
 <x-flash />
 
-<div class="overflow-hidden rounded-xl bg-base-100 shadow max-w-5xl">
+<div class="overflow-hidden rounded-xl bg-base-100 shadow max-w-5xl mx-auto">
     <table class="table table-zebra table-sm">
         <thead>
             <tr><th>Dosen</th><th>Matkul</th><th>Kelas</th><th>Semester</th><th>Tahun</th><th class="text-right">Aksi</th></tr>
