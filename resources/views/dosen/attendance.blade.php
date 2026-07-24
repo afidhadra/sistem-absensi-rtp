@@ -11,7 +11,7 @@
 <div class="overflow-x-auto rounded-xl bg-base-100 shadow">
     <table class="table table-zebra table-sm">
         <thead>
-            <tr><th>NIM</th><th>Nama</th><th>Waktu Absen</th></tr>
+            <tr class="text-xs uppercase text-base-content/50"><th>NIM</th><th>Nama</th><th>Waktu Absen</th></tr>
         </thead>
         <tbody>
             @foreach ($teachingAssignment->kelas->mahasiswa as $mhs)

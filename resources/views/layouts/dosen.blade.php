@@ -14,7 +14,7 @@ $navItems = [
         <label for="nav-drawer" class="drawer-overlay"></label>
         <aside class="min-h-full w-64 bg-neutral text-neutral-content flex flex-col">
             <div class="p-5 border-b border-neutral-content/10">
-                <h2 class="text-lg font-bold tracking-tight">RTP<span class="text-primary">.</span></h2>
+                <h2 class="text-lg font-bold tracking-tight"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block -mt-0.5 mr-1.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>RTP<span class="text-primary">.</span></h2>
                 <p class="text-xs text-neutral-content/50 mt-0.5">Dosen Panel</p>
             </div>
             <nav class="flex-1 p-3 space-y-0.5">
