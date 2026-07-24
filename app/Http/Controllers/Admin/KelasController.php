@@ -54,7 +54,11 @@ class KelasController extends Controller
 
     public function destroy(Kelas $kela): RedirectResponse
     {
-        $kela->delete();
+        try {
+            $kela->delete();
+        } catch (\Throwable) {
+            return back()->with('error', 'Kelas tidak bisa dihapus karena masih memiliki data terkait.');
+        }
 
         return redirect()->route('admin.kelas.index')->with('success', 'Kelas dihapus.');
     }

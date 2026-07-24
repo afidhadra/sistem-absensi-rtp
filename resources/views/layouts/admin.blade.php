@@ -51,7 +51,7 @@ $navItems = [
                         <p class="text-xs font-medium truncate">{{ auth()->user()->name }}</p>
                         <p class="text-xs text-neutral-content/40 capitalize">{{ auth()->user()->role }}</p>
                     </div>
-                    <form method="POST" action="{{ route('logout') }}" x-data @submit.prevent="$store.confirm.ask($event, 'Yakin ingin keluar?')">
+                    <form method="POST" action="{{ route('logout') }}" x-data @submit.prevent="$store.confirm.ask($event, 'Yakin ingin keluar?', 'Keluar')">
                         @csrf
                         <button class="text-neutral-content/40 hover:text-error" title="Keluar">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>

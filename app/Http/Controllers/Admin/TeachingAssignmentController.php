@@ -64,7 +64,11 @@ class TeachingAssignmentController extends Controller
 
     public function destroy(TeachingAssignment $teachingAssignment): RedirectResponse
     {
-        $teachingAssignment->delete();
+        try {
+            $teachingAssignment->delete();
+        } catch (\Throwable) {
+            return back()->with('error', 'Penugasan tidak bisa dihapus karena masih memiliki data terkait.');
+        }
 
         return redirect()->route('admin.teaching-assignment.index')->with('success', 'Penugasan dihapus.');
     }

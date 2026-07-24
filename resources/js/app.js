@@ -6,18 +6,18 @@ Alpine.plugin(persist);
 
 Alpine.store('confirm', {
     message: '',
+    confirmLabel: 'Hapus',
     pendingForm: null,
-    ask(e, message = 'Apakah Anda yakin?') {
+    ask(e, message = 'Apakah Anda yakin?', label = 'Hapus') {
         e.preventDefault();
         this.message = message;
+        this.confirmLabel = label;
         this.pendingForm = e.target;
     },
     ok() {
         if (!this.pendingForm) return;
         const form = this.pendingForm;
         this.pendingForm = null;
-        // Bypass Alpine's @submit.prevent by calling native submit()
-        // which ignores event handlers and submits directly
         form.submit();
     },
     cancel() {

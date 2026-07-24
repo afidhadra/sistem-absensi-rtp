@@ -43,7 +43,11 @@ class FakultasController extends Controller
 
     public function destroy(Fakultas $fakulta): RedirectResponse
     {
-        $fakulta->delete();
+        try {
+            $fakulta->delete();
+        } catch (\Throwable) {
+            return back()->with('error', 'Fakultas tidak bisa dihapus karena masih memiliki data terkait.');
+        }
 
         return redirect()->route('admin.fakultas.index')->with('success', 'Fakultas dihapus.');
     }
