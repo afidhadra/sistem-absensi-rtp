@@ -8,21 +8,21 @@
     </div>
 
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div class="stat bg-base-100 rounded-xl shadow-sm py-3">
-            <div class="stat-title text-xs">Mahasiswa</div>
-            <div class="stat-value text-lg text-primary">{{ $stats['mahasiswa'] ?? 0 }}</div>
+        <div class="stat bg-primary text-primary-content rounded-xl py-3">
+            <div class="stat-title text-primary-content/60 text-xs">Total Mahasiswa</div>
+            <div class="stat-value text-lg">{{ $stats['mahasiswa'] ?? 0 }}</div>
         </div>
-        <div class="stat bg-base-100 rounded-xl shadow-sm py-3">
-            <div class="stat-title text-xs">Dosen</div>
-            <div class="stat-value text-lg text-secondary">{{ $stats['dosen'] ?? 0 }}</div>
+        <div class="stat border border-base-300 rounded-xl py-3">
+            <div class="stat-title text-xs text-base-content/50">Dosen</div>
+            <div class="stat-value text-lg text-base-content">{{ $stats['dosen'] ?? 0 }}</div>
         </div>
-        <div class="stat bg-base-100 rounded-xl shadow-sm py-3">
-            <div class="stat-title text-xs">Mata Kuliah</div>
-            <div class="stat-value text-lg text-accent">{{ $stats['mata_kuliah'] ?? 0 }}</div>
+        <div class="stat border border-base-300 rounded-xl py-3">
+            <div class="stat-title text-xs text-base-content/50">Mata Kuliah</div>
+            <div class="stat-value text-lg text-base-content">{{ $stats['mata_kuliah'] ?? 0 }}</div>
         </div>
-        <div class="stat bg-base-100 rounded-xl shadow-sm py-3">
-            <div class="stat-title text-xs">Kelas</div>
-            <div class="stat-value text-lg text-info">{{ $stats['kelas'] ?? 0 }}</div>
+        <div class="stat border border-base-300 rounded-xl py-3">
+            <div class="stat-title text-xs text-base-content/50">Kelas</div>
+            <div class="stat-value text-lg text-base-content">{{ $stats['kelas'] ?? 0 }}</div>
         </div>
     </div>
 
