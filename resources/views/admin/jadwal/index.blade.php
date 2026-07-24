@@ -4,7 +4,7 @@
 <x-page-header title="Jadwal Kuliah" :action="route('admin.jadwal.create')" />
 <x-flash />
 
-<div class="overflow-hidden rounded-xl bg-base-100 shadow max-w-5xl mx-auto">
+<div class="overflow-hidden rounded-xl bg-base-100 shadow">
     <table class="table table-zebra table-sm">
         <thead>
             <tr><th>Hari</th><th>Jam</th><th>Ruangan</th><th>Dosen</th><th>Matkul</th><th>Kelas</th><th class="text-right">Aksi</th></tr>

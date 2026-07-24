@@ -4,7 +4,7 @@
 <x-page-header title="Mahasiswa" :action="route('admin.mahasiswa.create')" />
 <x-flash />
 
-<div class="overflow-hidden rounded-xl bg-base-100 shadow max-w-5xl mx-auto">
+<div class="overflow-hidden rounded-xl bg-base-100 shadow">
     <table class="table table-zebra table-sm">
         <thead>
             <tr><th>NIM</th><th>Nama</th><th>Email</th><th>Kelas</th><th class="text-right">Aksi</th></tr>

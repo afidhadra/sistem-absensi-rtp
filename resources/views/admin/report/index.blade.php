@@ -40,7 +40,7 @@
     <a href="{{ route('admin.report.csv', request()->query()) }}" class="btn btn-success btn-sm">CSV</a>
 </form>
 
-<div class="overflow-hidden rounded-xl bg-base-100 shadow max-w-5xl mx-auto">
+<div class="overflow-hidden rounded-xl bg-base-100 shadow">
     <div class="px-4 py-3 text-sm text-base-content/50">Ditemukan {{ $attendances->count() }} data</div>
     <table class="table table-zebra table-sm">
         <thead>
