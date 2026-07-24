@@ -17,7 +17,7 @@ class TeachingAssignmentController extends Controller
 {
     public function index(): View
     {
-        $items = TeachingAssignment::with(['dosen', 'mataKuliah', 'kelas', 'semester', 'tahunAkademik'])->get();
+        $items = TeachingAssignment::with(['dosen', 'mataKuliah', 'kelas', 'semester', 'tahunAkademik'])->paginate(20);
 
         return view('admin.teaching-assignment.index', compact('items'));
     }

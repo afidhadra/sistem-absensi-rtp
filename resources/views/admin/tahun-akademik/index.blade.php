@@ -5,7 +5,7 @@
 <x-flash />
 
 <div class="overflow-hidden rounded-xl bg-base-100 shadow">
-    <table class="table table-zebra">
+    <table class="table table-zebra table-xs">
         <thead>
             <tr><th>Kode</th><th>Nama</th><th>Periode</th><th>Status</th><th class="text-right">Aksi</th></tr>
         </thead>
@@ -28,4 +28,8 @@
         </tbody>
     </table>
 </div>
+<div class="mt-3">
+    {{ $items->links() }}
+</div>
 @endsection
+

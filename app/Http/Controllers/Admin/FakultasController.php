@@ -12,7 +12,7 @@ class FakultasController extends Controller
 {
     public function index(): View
     {
-        return view('admin.fakultas.index', ['items' => Fakultas::orderBy('kode')->get()]);
+        return view('admin.fakultas.index', ['items' => Fakultas::orderBy('kode')->paginate(20)]);
     }
 
     public function create(): View

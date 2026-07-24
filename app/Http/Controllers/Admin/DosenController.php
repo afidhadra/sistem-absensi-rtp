@@ -15,7 +15,7 @@ class DosenController extends Controller
 {
     public function index(): View
     {
-        $items = Dosen::with(['user', 'fakultas'])->orderBy('nama')->get();
+        $items = Dosen::with(['user', 'fakultas'])->orderBy('nama')->paginate(20);
 
         return view('admin.dosen.index', compact('items'));
     }

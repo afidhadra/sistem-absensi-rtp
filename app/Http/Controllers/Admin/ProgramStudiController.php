@@ -13,7 +13,7 @@ class ProgramStudiController extends Controller
 {
     public function index(): View
     {
-        $items = ProgramStudi::with('fakultas')->orderBy('kode')->get();
+        $items = ProgramStudi::with('fakultas')->orderBy('kode')->paginate(20);
 
         return view('admin.prodi.index', compact('items'));
     }

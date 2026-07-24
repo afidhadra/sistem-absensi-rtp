@@ -14,7 +14,7 @@ class MataKuliahController extends Controller
 {
     public function index(): View
     {
-        $items = MataKuliah::with(['semester', 'programStudi'])->orderBy('kode')->get();
+        $items = MataKuliah::with(['semester', 'programStudi'])->orderBy('kode')->paginate(20);
 
         return view('admin.mata-kuliah.index', compact('items'));
     }

@@ -12,7 +12,7 @@ class SemesterController extends Controller
 {
     public function index(): View
     {
-        return view('admin.semester.index', ['items' => Semester::orderBy('kode')->get()]);
+        return view('admin.semester.index', ['items' => Semester::orderBy('kode')->paginate(20)]);
     }
 
     public function create(): View

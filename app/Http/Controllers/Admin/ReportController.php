@@ -52,7 +52,7 @@ class ReportController extends Controller
             $query->whereDate('attended_at', '<=', $sampai);
         }
 
-        $attendances = $query->orderByDesc('attended_at')->get();
+        $attendances = $query->orderByDesc('attended_at')->paginate(20);
 
         return view('admin.report.index', [
             'attendances' => $attendances,

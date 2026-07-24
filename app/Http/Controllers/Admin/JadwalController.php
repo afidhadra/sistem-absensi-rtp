@@ -16,7 +16,7 @@ class JadwalController extends Controller
         $items = Jadwal::with('teachingAssignment.dosen', 'teachingAssignment.mataKuliah', 'teachingAssignment.kelas')
             ->orderByRaw("FIELD(hari,'senin','selasa','rabu','kamis','jumat','sabtu')")
             ->orderBy('jam_mulai')
-            ->get();
+            ->paginate(20);
 
         return view('admin.jadwal.index', compact('items'));
     }

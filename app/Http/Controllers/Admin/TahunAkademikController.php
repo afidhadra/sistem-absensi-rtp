@@ -12,7 +12,7 @@ class TahunAkademikController extends Controller
 {
     public function index(): View
     {
-        return view('admin.tahun-akademik.index', ['items' => TahunAkademik::orderByDesc('kode')->get()]);
+        return view('admin.tahun-akademik.index', ['items' => TahunAkademik::orderByDesc('kode')->paginate(20)]);
     }
 
     public function create(): View

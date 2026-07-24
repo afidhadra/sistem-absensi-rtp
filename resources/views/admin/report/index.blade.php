@@ -42,7 +42,7 @@
 
 <div class="overflow-hidden rounded-xl bg-base-100 shadow">
     <div class="px-4 py-3 text-sm text-base-content/50">Ditemukan {{ $attendances->count() }} data</div>
-    <table class="table table-zebra">
+    <table class="table table-zebra table-xs">
         <thead>
             <tr><th>NIM</th><th>Mahasiswa</th><th>Matkul</th><th>Dosen</th><th>Kelas</th><th>Tanggal</th><th>Jam</th></tr>
         </thead>
@@ -63,4 +63,8 @@
         </tbody>
     </table>
 </div>
+<div class="mt-3">
+    {{ $attendances->links() }}
+</div>
 @endsection
+

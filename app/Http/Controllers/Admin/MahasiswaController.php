@@ -15,7 +15,7 @@ class MahasiswaController extends Controller
 {
     public function index(): View
     {
-        $items = Mahasiswa::with(['user', 'kelas'])->orderBy('nama')->get();
+        $items = Mahasiswa::with(['user', 'kelas'])->orderBy('nama')->paginate(20);
 
         return view('admin.mahasiswa.index', compact('items'));
     }

@@ -13,7 +13,7 @@ class KelasController extends Controller
 {
     public function index(): View
     {
-        $items = Kelas::with('programStudi')->orderBy('kode')->get();
+        $items = Kelas::with('programStudi')->orderBy('kode')->paginate(20);
 
         return view('admin.kelas.index', compact('items'));
     }
