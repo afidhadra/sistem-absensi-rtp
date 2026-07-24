@@ -28,7 +28,12 @@
         </div>
         <div class="space-y-2">
             @forelse ($todaySchedule as $j)
-                <div class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+                @php
+                    $isHadir = in_array($j->teaching_assignment_id, $attendedTaIds);
+                    $adaOtp = !empty($activeOtpsByTa[$j->teaching_assignment_id]);
+                    $color = $isHadir ? 'border-l-success' : ($adaOtp ? 'border-l-warning' : 'border-l-base-300');
+                @endphp
+                <div class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow border-l-4 {{ $color }}">
                     <div class="card-body p-3">
                         <div class="flex items-center justify-between">
                             <div>

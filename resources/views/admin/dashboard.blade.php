@@ -38,7 +38,8 @@
             </div>
             <div class="space-y-2">
                 @foreach ($todayAttendances as $a)
-                    <div class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+                    @php $colors = ['border-l-primary', 'border-l-secondary', 'border-l-accent', 'border-l-info'] @endphp
+                    <div class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow border-l-4 {{ $colors[$loop->index % 4] }}">
                         <div class="card-body p-3">
                             <div class="flex items-center justify-between text-xs mb-1">
                                 <span class="font-medium">{{ $a['matkul'] }} · {{ $a['kelas'] }}</span>
@@ -52,7 +53,9 @@
         </div>
     @endif
 
-    <div class="flex flex-wrap gap-2">
+    <div class="card bg-base-100 border border-base-300">
+        <div class="card-body p-3">
+            <div class="flex flex-wrap gap-2">
         <a href="{{ route('admin.dosen.create') }}" class="btn btn-outline btn-xs">+ Dosen</a>
         <a href="{{ route('admin.mahasiswa.create') }}" class="btn btn-outline btn-xs">+ Mahasiswa</a>
         <a href="{{ route('admin.mata-kuliah.create') }}" class="btn btn-outline btn-xs">+ Matkul</a>
@@ -60,5 +63,6 @@
         <a href="{{ route('admin.teaching-assignment.create') }}" class="btn btn-outline btn-xs">+ Penugasan</a>
         <a href="{{ route('admin.jadwal.create') }}" class="btn btn-outline btn-xs">+ Jadwal</a>
     </div>
-</div>
+        </div>
+    </div>
 @endsection

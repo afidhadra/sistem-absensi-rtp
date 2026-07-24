@@ -28,7 +28,8 @@
     {{-- Matkul Cards --}}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         @forelse ($matkulList as $ta)
-            <div class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+            @php $colors = ['border-l-primary', 'border-l-secondary', 'border-l-accent', 'border-l-info']; $c = $colors[$loop->index % 4] @endphp
+            <div class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow border-l-4 {{ $c }}">
                 <div class="card-body p-4">
                     <div class="flex items-start justify-between">
                         <div>
