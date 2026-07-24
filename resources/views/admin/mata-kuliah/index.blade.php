@@ -1,28 +1,28 @@
 @extends('layouts.admin')
 
 @section('content-body')
-<div class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl font-bold text-gray-800">Mata Kuliah</h1>
-    <a href="{{ route('admin.mata-kuliah.create') }}" class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">Tambah</a>
-</div>
-@if (session('success'))
-    <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-700">{{ session('success') }}</div>
-@endif
-<div class="overflow-hidden rounded-xl bg-white shadow">
-    <table class="w-full text-left text-sm">
-        <thead class="border-b bg-gray-50 text-xs uppercase text-gray-500">
-            <tr><th class="px-4 py-3">Kode</th><th class="px-4 py-3">Nama</th><th class="px-4 py-3">SKS</th><th class="px-4 py-3">Semester</th><th class="px-4 py-3 text-right">Aksi</th></tr>
+<x-page-header title="Mata Kuliah" :action="route('admin.mata-kuliah.create')" />
+<x-flash />
+
+<div class="overflow-hidden rounded-xl bg-base-100 shadow">
+    <table class="table table-zebra">
+        <thead>
+            <tr><th>Kode</th><th>Nama</th><th>SKS</th><th>Semester</th><th>Prodi</th><th class="text-right">Aksi</th></tr>
         </thead>
-        <tbody class="divide-y">
+        <tbody>
             @foreach ($items as $item)
-                <tr class="hover:bg-gray-50">
-                    <td class="px-4 py-3 font-mono">{{ $item->kode }}</td>
-                    <td class="px-4 py-3">{{ $item->nama }}</td>
-                    <td class="px-4 py-3">{{ $item->sks }}</td>
-                    <td class="px-4 py-3">{{ $item->semester?->nama ?? '-' }}</td>
-                    <td class="px-4 py-3 text-right whitespace-nowrap">
-                        <a href="{{ route('admin.mata-kuliah.edit', $item) }}" class="text-blue-600 hover:underline">Edit</a>
-                        <form method="POST" action="{{ route('admin.mata-kuliah.destroy', $item) }}" class="inline ml-2" onsubmit="return confirm('Hapus?')">@csrf @method('DELETE')<button class="text-red-600 hover:underline">Hapus</button></form>
+                <tr class="hover">
+                    <td class="font-mono">{{ $item->kode }}</td>
+                    <td>{{ $item->nama }}</td>
+                    <td>{{ $item->sks }}</td>
+                    <td>{{ $item->semester?->nama ?? '-' }}</td>
+                    <td>{{ $item->programStudi?->nama ?? '-' }}</td>
+                    <td class="text-right whitespace-nowrap">
+                        <a href="{{ route('admin.mata-kuliah.edit', $item) }}" class="btn btn-ghost btn-xs">Edit</a>
+                        <form method="POST" action="{{ route('admin.mata-kuliah.destroy', $item) }}" class="inline" onsubmit="return confirm('Hapus?')">
+                            @csrf @method('DELETE')
+                            <button class="btn btn-ghost btn-xs text-error">Hapus</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
