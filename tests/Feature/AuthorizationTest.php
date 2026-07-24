@@ -6,7 +6,7 @@ beforeEach(fn () => $this->seed());
 
 $admin = fn () => User::where('email', 'admin')->first();
 $dosen = fn () => User::where('email', 'dosen')->first();
-$mhs   = fn () => User::where('email', 'mahasiswa')->first();
+$mhs = fn () => User::where('email', 'mahasiswa')->first();
 
 // --- Admin routes — only admin ---
 test('admin bisa akses admin dashboard', function () use ($admin) {

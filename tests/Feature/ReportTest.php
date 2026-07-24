@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Dosen;
+use App\Models\Kelas;
+use App\Models\MataKuliah;
 use App\Models\User;
 
 beforeEach(fn () => $this->seed());
@@ -11,21 +14,21 @@ test('admin lihat laporan absensi', function () use ($admin) {
 });
 
 test('admin filter laporan by matkul', function () use ($admin) {
-    $mk = \App\Models\MataKuliah::first();
+    $mk = MataKuliah::first();
     $this->actingAs($admin())
         ->get('/admin/report?mata_kuliah_id='.$mk->id)
         ->assertOk();
 });
 
 test('admin filter laporan by dosen', function () use ($admin) {
-    $dosen = \App\Models\Dosen::first();
+    $dosen = Dosen::first();
     $this->actingAs($admin())
         ->get('/admin/report?dosen_id='.$dosen->id)
         ->assertOk();
 });
 
 test('admin filter laporan by kelas', function () use ($admin) {
-    $kelas = \App\Models\Kelas::first();
+    $kelas = Kelas::first();
     $this->actingAs($admin())
         ->get('/admin/report?kelas_id='.$kelas->id)
         ->assertOk();

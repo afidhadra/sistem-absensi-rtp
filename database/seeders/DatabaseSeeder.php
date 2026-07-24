@@ -12,7 +12,6 @@ use App\Models\Semester;
 use App\Models\TahunAkademik;
 use App\Models\TeachingAssignment;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
