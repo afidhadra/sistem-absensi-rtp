@@ -1,0 +1,94 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "primary": "#6c1eeb",
+        "primary-content": "#eeebff",
+        "secondary": "#f87272",
+        "accent": "#37cdbe",
+        "neutral": "#1d2323",
+        "neutral-content": "#e7e7e7",
+        "base-100": "#ffffff",
+        "base-200": "#fafafa",
+        "base-300": "#f2f2f2",
+        "base-content": "#333333",
+        "info": "#3abff8",
+        "success": "#36d399",
+        "warning": "#fbbd23",
+        "error": "#f87272"
+      },
+      "fontFamily": {
+        "h1": [
+          "Poppins"
+        ],
+        "h2": [
+          "Poppins"
+        ],
+        "body-md": [
+          "Poppins"
+        ],
+        "body-sm": [
+          "Poppins"
+        ],
+        "label-caps": [
+          "Poppins"
+        ],
+        "display-large": [
+          "Poppins"
+        ]
+      },
+      "fontSize": {
+        "h1": [
+          "1.25rem",
+          {
+            "fontWeight": "700"
+          }
+        ],
+        "h2": [
+          "0.875rem",
+          {
+            "fontWeight": "600"
+          }
+        ],
+        "body-md": [
+          "0.875rem",
+          {}
+        ],
+        "body-sm": [
+          "0.75rem",
+          {}
+        ],
+        "label-caps": [
+          "0.75rem",
+          {
+            "letterSpacing": "0.02em",
+            "fontWeight": "600"
+          }
+        ],
+        "display-large": [
+          "1.875rem",
+          {
+            "letterSpacing": "-0.02em",
+            "fontWeight": "800"
+          }
+        ]
+      },
+      "borderRadius": {
+        "none": "0px",
+        "sm": "6px",
+        "md": "10px",
+        "lg": "16px",
+        "xl": "20px",
+        "full": "9999px"
+      },
+      "spacing": {
+        "xs": "2px",
+        "sm": "4px",
+        "md": "8px",
+        "lg": "12px",
+        "xl": "16px",
+        "section": "24px"
+      }
+    }
+  }
+}
