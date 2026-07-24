@@ -11,12 +11,14 @@ Alpine.store('confirm', {
         e.preventDefault();
         this.message = message;
         this.pendingForm = e.target;
-        document.getElementById('confirm-modal').showModal();
     },
     ok() {
-        if (this.pendingForm) this.pendingForm.submit();
+        if (!this.pendingForm) return;
+        const form = this.pendingForm;
         this.pendingForm = null;
-        document.getElementById('confirm-modal').close();
+        // Bypass Alpine's @submit.prevent by calling native submit()
+        // which ignores event handlers and submits directly
+        form.submit();
     },
     cancel() {
         this.pendingForm = null;

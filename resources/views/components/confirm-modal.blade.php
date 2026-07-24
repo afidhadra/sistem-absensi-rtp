@@ -1,12 +1,11 @@
-@props(['id' => 'confirm-modal'])
-<dialog id="{{ $id }}" class="modal">
+<dialog id="confirm-modal" class="modal" x-data="{ open: false }" x-init="$watch(() => $store.confirm.pendingForm, v => open = !!v)" :class="open && 'modal-open'" @click.self="$store.confirm.cancel(); open = false">
     <div class="modal-box rounded-2xl">
-        <h3 class="text-lg font-bold text-base-content">{{ $title ?? 'Konfirmasi' }}</h3>
-        <p class="py-4 text-sm text-base-content/60" x-data x-text="$store.confirm.message">{{ $message ?? 'Apakah Anda yakin?' }}</p>
+        <h3 class="text-lg font-bold text-base-content">Konfirmasi</h3>
+        <p class="py-4 text-sm text-base-content/60" x-text="$store.confirm.message">Apakah Anda yakin?</p>
         <div class="modal-action">
-            <form method="dialog"><button class="btn btn-ghost btn-sm" @click="$store.confirm.cancel()">Batal</button></form>
-            <button class="btn btn-error btn-sm" @click="$store.confirm.ok()">Hapus</button>
+            <button type="button" class="btn btn-ghost btn-sm" @click="$store.confirm.cancel(); open = false">Batal</button>
+            <button type="button" class="btn btn-error btn-sm" @click="$store.confirm.ok(); open = false">Hapus</button>
         </div>
     </div>
-    <form method="dialog" class="modal-backdrop"><button @click="$store.confirm.cancel()">close</button></form>
+    <div class="modal-backdrop bg-black/40" @click="$store.confirm.cancel(); open = false"></div>
 </dialog>

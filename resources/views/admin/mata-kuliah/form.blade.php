@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content-body')
+<x-form-errors />
 <x-page-header title="{{ isset($item) ? 'Edit Mata Kuliah' : 'Tambah Mata Kuliah' }}" />
 
 <form method="POST" action="{{ isset($item) ? route('admin.mata-kuliah.update', $item) : route('admin.mata-kuliah.store') }}">
