@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('content')
+@section('content-body')
 <div class="mx-auto max-w-7xl px-4 py-8">
     <div class="mb-6 flex items-center justify-between">
         <h1 class="text-2xl font-bold text-gray-800">Dashboard Admin</h1>
