@@ -22,7 +22,10 @@
 
     {{-- Today Schedule --}}
     <div>
-        <h2 class="text-xs font-semibold text-base-content/70 mb-2">Jadwal Hari Ini</h2>
+        <div class="flex items-center justify-between mb-2">
+            <h2 class="text-xs font-semibold text-base-content/70">Jadwal Hari Ini</h2>
+            <span class="badge badge-ghost badge-xs">{{ $todaySchedule->count() }} kelas</span>
+        </div>
         <div class="space-y-2">
             @forelse ($todaySchedule as $j)
                 <div class="card bg-base-100 shadow-sm">

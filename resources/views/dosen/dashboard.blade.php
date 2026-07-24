@@ -16,9 +16,18 @@
         </div>
     @endif
 
+    {{-- Stats --}}
+    <div class="flex items-center gap-3 text-xs text-base-content/50">
+        <span class="font-medium text-base-content">{{ $matkulList->count() }} matkul</span>
+        <span class="w-px h-3 bg-base-300"></span>
+        <span>{{ $matkulList->sum(fn($t) => $t->kelas->mahasiswa->count()) }} mahasiswa</span>
+        <span class="w-px h-3 bg-base-300"></span>
+        <span>{{ $matkulList->sum('hadir_count') }} hadir hari ini</span>
+    </div>
+
     {{-- Matkul Cards --}}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-        @foreach ($matkulList as $ta)
+        @forelse ($matkulList as $ta)
             <div class="card bg-base-100 shadow-sm">
                 <div class="card-body p-4">
                     <div class="flex items-start justify-between">
@@ -61,7 +70,9 @@
                     </div>
                 </div>
             </div>
-        @endforeach
-    </div>
+        @empty
+            <div class="col-span-full text-center py-8 text-base-content/30 text-xs">Belum ada penugasan mata kuliah.</div>
+        @endforelse
+        </div>
 </div>
 @endsection

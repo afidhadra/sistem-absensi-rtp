@@ -27,8 +27,15 @@
     </div>
 
     @if ($todayAttendances)
+        @php
+            $sumHadir = array_sum(array_column($todayAttendances, 'hadir'));
+            $sumTotal = array_sum(array_column($todayAttendances, 'total'));
+        @endphp
         <div>
-            <h2 class="text-xs font-semibold text-base-content/70 mb-2">Absensi Hari Ini</h2>
+            <div class="flex items-center justify-between mb-2">
+                <h2 class="text-sm font-semibold text-base-content/80">Absensi Hari Ini</h2>
+                <span class="text-xs text-base-content/40">{{ count($todayAttendances) }} kelas · {{ $sumHadir }}/{{ $sumTotal }} hadir</span>
+            </div>
             <div class="space-y-2">
                 @foreach ($todayAttendances as $a)
                     <div class="card bg-base-100 shadow-sm">
