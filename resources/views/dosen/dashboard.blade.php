@@ -28,7 +28,7 @@
     {{-- Matkul Cards --}}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         @forelse ($matkulList as $ta)
-            <div class="card bg-base-100 shadow-sm">
+            <div class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
                 <div class="card-body p-4">
                     <div class="flex items-start justify-between">
                         <div>
@@ -52,7 +52,7 @@
                         $active = $ta->otps->where('is_used', false)->where('expires_at', '>', now())->first();
                     @endphp
                     @if ($active)
-                        <div class="mt-2 bg-warning/10 border border-warning/30 rounded-lg px-3 py-2">
+                        <div class="mt-2 bg-warning/10 border border-warning/30 rounded-lg px-3 py-2 hover:bg-warning/15 transition-colors">
                             <p class="text-xs text-warning font-medium">OTP Aktif</p>
                             <p class="font-mono text-base font-bold tracking-widest">{{ $active->kode }}</p>
                             <p class="text-xs text-base-content/50 mt-0.5">Expired {{ $active->expires_at->diffForHumans() }}</p>

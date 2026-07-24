@@ -38,7 +38,7 @@
             </div>
             <div class="space-y-2">
                 @foreach ($todayAttendances as $a)
-                    <div class="card bg-base-100 shadow-sm">
+                    <div class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
                         <div class="card-body p-3">
                             <div class="flex items-center justify-between text-xs mb-1">
                                 <span class="font-medium">{{ $a['matkul'] }} · {{ $a['kelas'] }}</span>
