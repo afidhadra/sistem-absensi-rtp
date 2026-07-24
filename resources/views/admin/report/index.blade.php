@@ -59,8 +59,6 @@
                 </tr>
             @empty
                 <tr><td colspan="7" class="text-center text-base-content/40 py-8">Belum ada data absensi.</td></tr>
-            @empty
-                <tr><td colspan="7" class="text-center text-base-content/40 py-8">Belum ada data.</td></tr>
             @endforelse
         </tbody>
     </table>
