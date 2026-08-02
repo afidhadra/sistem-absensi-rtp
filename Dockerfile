@@ -1,4 +1,4 @@
-FROM php:8.3-cli
+FROM php:8.4-cli
 
 # Install extensions
 RUN apt-get update && apt-get install -y \
@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
 WORKDIR /app
 
@@ -21,9 +23,6 @@ COPY . .
 
 # Run post-install scripts
 RUN composer dump-autoload --optimize
-
-# Generate app key placeholder (will be overridden by env)
-RUN php artisan package:discover --ansi || true
 
 EXPOSE 8000
 
