@@ -21,9 +21,16 @@ RUN composer install --no-dev --optimize-autoloader --no-scripts --ignore-platfo
 # Copy everything else
 COPY . .
 
-# Run post-install scripts
-RUN composer dump-autoload --optimize
+# Setup storage directories + permissions
+RUN mkdir -p storage/framework/{sessions,views,cache} \
+    storage/logs \
+    bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache || true
+
+# Generate autoload
+RUN composer dump-autoload --optimize --no-scripts
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"]
+CMD ["sh", "-c", "php artisan migrate --force 2>&1 && echo 'Migration done' && php artisan serve --host=0.0.0.0 --port=$PORT 2>&1"]
