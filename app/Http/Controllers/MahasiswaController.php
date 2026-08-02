@@ -40,7 +40,9 @@ class MahasiswaController extends Controller
             ->get()
             ->groupBy('teaching_assignment_id');
 
-        $totalSessions = TeachingAssignment::where('kelas_id', $kelasId)->count();
+        $totalSessions = TeachingAssignment::where('kelas_id', $kelasId)
+            ->whereHas('tahunAkademik', fn ($q) => $q->where('is_active', true))
+            ->count();
         $hadirCount = $riwayat->pluck('teaching_assignment_id')->unique()->count();
         $persentase = $totalSessions > 0 ? round(($hadirCount / $totalSessions) * 100) : 0;
 
@@ -76,6 +78,12 @@ class MahasiswaController extends Controller
         if ($ta->kelas_id !== $mahasiswa->kelas_id) {
             return back()->with('error', 'Anda tidak terdaftar di kelas ini.');
         }
+        if (! $ta->tahunAkademik?->is_active) {
+            return back()->with('error', 'Tahun akademik tidak aktif.');
+        }
+        if (! $ta->mataKuliah?->is_active) {
+            return back()->with('error', 'Mata kuliah tidak aktif.');
+        }
 
         $exists = Attendance::where('mahasiswa_id', $mahasiswa->id)
             ->where('teaching_assignment_id', $data['teaching_assignment_id'])
@@ -91,6 +99,8 @@ class MahasiswaController extends Controller
             'teaching_assignment_id' => $ta->id,
             'attended_at' => now(),
         ]);
+
+        $otp->update(['is_used' => true]);
 
         return redirect()->route('mahasiswa.dashboard')->with('success', 'Absensi berhasil!');
     }

@@ -14,7 +14,7 @@
             <tr class="text-xs uppercase text-base-content/50"><th>NPM</th><th>Nama</th><th>Waktu Absen</th></tr>
         </thead>
         <tbody>
-            @foreach ($teachingAssignment->kelas->mahasiswa as $mhs)
+            @forelse ($teachingAssignment->kelas->mahasiswa as $mhs)
                 @php $att = $attendances->where('mahasiswa_id', $mhs->id)->first(); @endphp
                 <tr class="hover">
                     <td class="font-mono">{{ $mhs->npm }}</td>
@@ -27,7 +27,11 @@
                         @endif
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="3" class="text-center text-sm text-base-content/40 py-8">Belum ada mahasiswa di kelas ini.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

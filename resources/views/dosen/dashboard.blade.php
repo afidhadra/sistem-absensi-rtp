@@ -1,7 +1,6 @@
 @extends('layouts.dosen')
 
 @section('content-body')
-<x-flash />
 
 <div class="space-y-4">
     <div>

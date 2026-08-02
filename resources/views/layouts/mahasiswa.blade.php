@@ -21,7 +21,7 @@ $navItems = [
                 @foreach ($navItems as $item)
                     <a href="{{ route($item['route']) }}"
                        class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors
-                       @if (request()->routeIs($item['route']))
+                       @if (request()->routeIs(str_replace('.dashboard', '.*', $item['route'])) || request()->routeIs($item['route']))
                            bg-primary text-primary-content
                        @else
                            text-neutral-content/70 hover:bg-neutral-content/10
