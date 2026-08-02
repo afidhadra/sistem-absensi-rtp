@@ -28,7 +28,7 @@ class DosenController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $request->validate([
-            'nip' => 'required|string|max:20|unique:dosen,nip',
+            'nidn' => 'required|string|max:20|unique:dosen,nidn',
             'nama' => 'required|string|max:255',
             'email' => 'required|string|max:255|unique:users,email',
             'password' => 'required|string|min:6',
@@ -44,7 +44,7 @@ class DosenController extends Controller
 
         Dosen::create([
             'user_id' => $user->id,
-            'nip' => $data['nip'],
+            'nidn' => $data['nidn'],
             'nama' => $data['nama'],
             'fakultas_id' => $data['fakultas_id'] ?? null,
         ]);
@@ -60,7 +60,7 @@ class DosenController extends Controller
     public function update(Request $request, Dosen $dosen): RedirectResponse
     {
         $data = $request->validate([
-            'nip' => 'required|string|max:20|unique:dosen,nip,'.$dosen->id,
+            'nidn' => 'required|string|max:20|unique:dosen,nidn,'.$dosen->id,
             'nama' => 'required|string|max:255',
             'email' => 'required|string|max:255|unique:users,email,'.$dosen->user_id,
             'password' => 'nullable|string|min:6',
@@ -74,7 +74,7 @@ class DosenController extends Controller
         ]);
 
         $dosen->update([
-            'nip' => $data['nip'],
+            'nidn' => $data['nidn'],
             'nama' => $data['nama'],
             'fakultas_id' => $data['fakultas_id'] ?? null,
         ]);

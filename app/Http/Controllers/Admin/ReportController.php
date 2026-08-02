@@ -70,10 +70,10 @@ class ReportController extends Controller
 
         $callback = function () use ($data) {
             $fh = fopen('php://output', 'w');
-            fputcsv($fh, ['NIM', 'Mahasiswa', 'Matkul', 'Dosen', 'Kelas', 'Tanggal', 'Jam']);
+            fputcsv($fh, ['NPM', 'Mahasiswa', 'Matkul', 'Dosen', 'Kelas', 'Tanggal', 'Jam']);
             foreach ($data as $a) {
                 fputcsv($fh, [
-                    $a->mahasiswa->nim,
+                    $a->mahasiswa->npm,
                     $a->mahasiswa->nama,
                     $a->teachingAssignment->mataKuliah->nama,
                     $a->teachingAssignment->dosen->nama,

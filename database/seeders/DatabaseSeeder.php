@@ -84,14 +84,14 @@ class DatabaseSeeder extends Seeder
         // --- Profile links ---
         Dosen::create([
             'user_id' => $dosenUser->id,
-            'nip' => '198501012010011001',
+            'nidn' => '198501012010011001',
             'nama' => 'Dr. Budi Santoso',
             'fakultas_id' => $fakultas->id,
         ]);
 
         $mahasiswa = Mahasiswa::create([
             'user_id' => $mhsUser->id,
-            'nim' => '2021001',
+            'npm' => '2021001',
             'nama' => 'Ahmad Student',
             'kelas_id' => $kelas->id,
         ]);
@@ -109,7 +109,7 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create(['role' => 'mahasiswa'])->each(function (User $u) use ($kelas): void {
             Mahasiswa::create([
                 'user_id' => $u->id,
-                'nim' => '2021'.str_pad((string) ($u->id + 100), 3, '0', STR_PAD_LEFT),
+                'npm' => '2021'.str_pad((string) ($u->id + 100), 3, '0', STR_PAD_LEFT),
                 'nama' => $u->name,
                 'kelas_id' => $kelas->id,
             ]);

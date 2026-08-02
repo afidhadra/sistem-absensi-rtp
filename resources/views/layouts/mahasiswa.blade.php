@@ -38,7 +38,7 @@ $navItems = [
                     </div>
                     <div class="flex-1 min-w-0">
                         <p class="text-xs font-medium truncate">{{ auth()->user()->name }}</p>
-                        <p class="text-xs text-neutral-content/40">{{ auth()->user()->mahasiswa?->nim }}</p>
+                        <p class="text-xs text-neutral-content/40">{{ auth()->user()->mahasiswa?->npm }}</p>
                     </div>
                     <form method="POST" action="{{ route('logout') }}" x-data @submit.prevent="$store.confirm.ask($event, 'Yakin ingin keluar?', 'Keluar')">
                         @csrf

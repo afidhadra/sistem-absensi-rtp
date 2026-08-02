@@ -11,13 +11,13 @@
 <div class="overflow-x-auto rounded-xl bg-base-100 shadow">
     <table class="table table-zebra table-sm">
         <thead>
-            <tr class="text-xs uppercase text-base-content/50"><th>NIM</th><th>Nama</th><th>Waktu Absen</th></tr>
+            <tr class="text-xs uppercase text-base-content/50"><th>NPM</th><th>Nama</th><th>Waktu Absen</th></tr>
         </thead>
         <tbody>
             @foreach ($teachingAssignment->kelas->mahasiswa as $mhs)
                 @php $att = $attendances->where('mahasiswa_id', $mhs->id)->first(); @endphp
                 <tr class="hover">
-                    <td class="font-mono">{{ $mhs->nim }}</td>
+                    <td class="font-mono">{{ $mhs->npm }}</td>
                     <td>{{ $mhs->nama }}</td>
                     <td>
                         @if ($att)

@@ -16,7 +16,7 @@ test('admin tambah dosen — creates user + dosen', function () use ($admin) {
     $fakultas = Fakultas::firstWhere('kode', 'FTI');
 
     $this->actingAs($admin())->post('/admin/dosen', [
-        'nip' => '199001012020011001',
+        'nidn' => '199001012020011001',
         'nama' => 'Dr. Siti Rahayu',
         'email' => 'siti@test.com',
         'password' => 'password123',
@@ -24,14 +24,14 @@ test('admin tambah dosen — creates user + dosen', function () use ($admin) {
     ])->assertRedirect('/admin/dosen');
 
     $this->assertDatabaseHas('users', ['email' => 'siti@test.com']);
-    $this->assertDatabaseHas('dosen', ['nip' => '199001012020011001']);
+    $this->assertDatabaseHas('dosen', ['nidn' => '199001012020011001']);
 });
 
 test('admin tambah dosen — validasi duplicate email', function () use ($admin) {
     $fakultas = Fakultas::firstWhere('kode', 'FTI');
     // Buat user dulu
     $this->actingAs($admin())->post('/admin/dosen', [
-        'nip' => '199001012020011001',
+        'nidn' => '199001012020011001',
         'nama' => 'Dr. Siti Rahayu',
         'email' => 'dosen',  // same as existing dosen
         'password' => 'password123',
@@ -40,11 +40,11 @@ test('admin tambah dosen — validasi duplicate email', function () use ($admin)
 });
 
 test('admin edit dosen', function () use ($admin) {
-    $dosen = Dosen::firstWhere('nip', '198501012010011001');
+    $dosen = Dosen::firstWhere('nidn', '198501012010011001');
     $fakultas = Fakultas::firstWhere('kode', 'FTI');
 
     $this->actingAs($admin())->put("/admin/dosen/{$dosen->id}", [
-        'nip' => '198501012010011001',
+        'nidn' => '198501012010011001',
         'nama' => 'Dr. Budi Santoso (updated)',
         'email' => 'dosen',
         'password' => 'dosen123',
@@ -55,7 +55,7 @@ test('admin edit dosen', function () use ($admin) {
 });
 
 test('admin hapus dosen — cascade ke user', function () use ($admin) {
-    $dosen = Dosen::firstWhere('nip', '198501012010011001');
+    $dosen = Dosen::firstWhere('nidn', '198501012010011001');
     $userId = $dosen->user_id;
 
     $this->actingAs($admin())->delete("/admin/dosen/{$dosen->id}")

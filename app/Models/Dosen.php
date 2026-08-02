@@ -15,7 +15,7 @@ class Dosen extends Model
 
     protected $table = 'dosen';
 
-    protected $fillable = ['user_id', 'nip', 'nama', 'fakultas_id'];
+    protected $fillable = ['user_id', 'nidn', 'nama', 'fakultas_id'];
 
     /**
      * @return BelongsTo<User, $this>

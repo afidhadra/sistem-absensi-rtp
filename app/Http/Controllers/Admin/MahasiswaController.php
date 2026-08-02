@@ -28,7 +28,7 @@ class MahasiswaController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $request->validate([
-            'nim' => 'required|string|max:20|unique:mahasiswa,nim',
+            'npm' => 'required|string|max:20|unique:mahasiswa,npm',
             'nama' => 'required|string|max:255',
             'email' => 'required|string|max:255|unique:users,email',
             'password' => 'required|string|min:6',
@@ -44,7 +44,7 @@ class MahasiswaController extends Controller
 
         Mahasiswa::create([
             'user_id' => $user->id,
-            'nim' => $data['nim'],
+            'npm' => $data['npm'],
             'nama' => $data['nama'],
             'kelas_id' => $data['kelas_id'] ?? null,
         ]);
@@ -60,7 +60,7 @@ class MahasiswaController extends Controller
     public function update(Request $request, Mahasiswa $mahasiswa): RedirectResponse
     {
         $data = $request->validate([
-            'nim' => 'required|string|max:20|unique:mahasiswa,nim,'.$mahasiswa->id,
+            'npm' => 'required|string|max:20|unique:mahasiswa,npm,'.$mahasiswa->id,
             'nama' => 'required|string|max:255',
             'email' => 'required|string|max:255|unique:users,email,'.$mahasiswa->user_id,
             'password' => 'nullable|string|min:6',
@@ -74,7 +74,7 @@ class MahasiswaController extends Controller
         ]);
 
         $mahasiswa->update([
-            'nim' => $data['nim'],
+            'npm' => $data['npm'],
             'nama' => $data['nama'],
             'kelas_id' => $data['kelas_id'] ?? null,
         ]);

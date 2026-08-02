@@ -8,8 +8,8 @@
     @csrf @if (isset($item)) @method('PUT') @endif
     <div class="grid grid-cols-2 gap-4 max-w-2xl mb-4">
         <div>
-            <label class="label"><span class="label-text text-xs">NIM</span></label>
-            <input type="text" name="nim" value="{{ old('nim', $item->nim ?? '') }}" class="input input-bordered w-full" required>
+            <label class="label"><span class="label-text text-xs">NPM</span></label>
+            <input type="text" name="npm" value="{{ old('npm', $item->npm ?? '') }}" class="input input-bordered w-full" required>
         </div>
         <div>
             <label class="label"><span class="label-text text-xs">Kelas</span></label>

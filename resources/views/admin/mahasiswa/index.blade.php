@@ -7,12 +7,12 @@
 <div class="overflow-hidden rounded-xl bg-base-100 shadow">
     <table class="table table-zebra table-sm">
         <thead>
-            <tr class="text-xs uppercase text-base-content/50"><th>NIM</th><th>Nama</th><th>Email</th><th>Kelas</th><th class="text-right">Aksi</th></tr>
+            <tr class="text-xs uppercase text-base-content/50"><th>NPM</th><th>Nama</th><th>Email</th><th>Kelas</th><th class="text-right">Aksi</th></tr>
         </thead>
         <tbody>
             @forelse ($items as $item)
                 <tr class="hover">
-                    <td class="font-mono">{{ $item->nim }}</td>
+                    <td class="font-mono">{{ $item->npm }}</td>
                     <td>{{ $item->nama }}</td>
                     <td class="text-base-content/50">{{ $item->user?->email }}</td>
                     <td>{{ $item->kelas?->kode ?? '-' }}</td>

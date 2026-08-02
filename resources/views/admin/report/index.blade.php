@@ -44,12 +44,12 @@
     <div class="px-4 py-3 text-sm text-base-content/50">Ditemukan {{ $attendances->count() }} data</div>
     <table class="table table-zebra table-sm">
         <thead>
-            <tr class="text-xs uppercase text-base-content/50"><th>NIM</th><th>Mahasiswa</th><th>Matkul</th><th>Dosen</th><th>Kelas</th><th>Tanggal</th><th>Jam</th></tr>
+            <tr class="text-xs uppercase text-base-content/50"><th>NPM</th><th>Mahasiswa</th><th>Matkul</th><th>Dosen</th><th>Kelas</th><th>Tanggal</th><th>Jam</th></tr>
         </thead>
         <tbody>
             @forelse ($attendances as $a)
                 <tr class="hover">
-                    <td class="font-mono">{{ $a->mahasiswa->nim }}</td>
+                    <td class="font-mono">{{ $a->mahasiswa->npm }}</td>
                     <td>{{ $a->mahasiswa->nama }}</td>
                     <td>{{ $a->teachingAssignment->mataKuliah->nama }}</td>
                     <td>{{ $a->teachingAssignment->dosen->nama }}</td>

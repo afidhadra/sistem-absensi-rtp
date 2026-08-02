@@ -15,7 +15,7 @@ class Mahasiswa extends Model
 
     protected $table = 'mahasiswa';
 
-    protected $fillable = ['user_id', 'nim', 'nama', 'kelas_id'];
+    protected $fillable = ['user_id', 'npm', 'nama', 'kelas_id'];
 
     /**
      * @return BelongsTo<User, $this>
