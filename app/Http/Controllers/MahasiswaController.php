@@ -92,8 +92,6 @@ class MahasiswaController extends Controller
             'attended_at' => now(),
         ]);
 
-        $otp->update(['is_used' => true]);
-
         return redirect()->route('mahasiswa.dashboard')->with('success', 'Absensi berhasil!');
     }
 

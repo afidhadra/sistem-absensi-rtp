@@ -42,7 +42,7 @@ test('mahasiswa absen dengan OTP valid', function () use ($mhs) {
 
     $this->assertDatabaseHas('otps', [
         'id' => $otp->id,
-        'is_used' => true,
+        'is_used' => false,
     ]);
 });
 
