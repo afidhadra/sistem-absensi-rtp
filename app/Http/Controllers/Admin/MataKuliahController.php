@@ -29,6 +29,8 @@ class MataKuliahController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        $request->merge(['is_active' => $request->boolean('is_active')]);
+
         $data = $request->validate([
             'kode' => 'required|string|max:15|unique:mata_kuliah,kode',
             'nama' => 'required|string|max:255',
@@ -37,7 +39,6 @@ class MataKuliahController extends Controller
             'program_studi_id' => 'nullable|exists:program_studi,id',
             'is_active' => 'boolean',
         ]);
-        $data['is_active'] = ($data['is_active'] ?? false);
 
         MataKuliah::create($data);
 
@@ -55,6 +56,8 @@ class MataKuliahController extends Controller
 
     public function update(Request $request, MataKuliah $mataKuliah): RedirectResponse
     {
+        $request->merge(['is_active' => $request->boolean('is_active')]);
+
         $data = $request->validate([
             'kode' => 'required|string|max:15|unique:mata_kuliah,kode,'.$mataKuliah->id,
             'nama' => 'required|string|max:255',
@@ -63,7 +66,6 @@ class MataKuliahController extends Controller
             'program_studi_id' => 'nullable|exists:program_studi,id',
             'is_active' => 'boolean',
         ]);
-        $data['is_active'] = ($data['is_active'] ?? false);
 
         $mataKuliah->update($data);
 

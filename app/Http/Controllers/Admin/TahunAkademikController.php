@@ -22,6 +22,8 @@ class TahunAkademikController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        $request->merge(['is_active' => $request->boolean('is_active')]);
+
         $data = $request->validate([
             'kode' => 'required|string|max:20|unique:tahun_akademik,kode',
             'nama' => 'required|string|max:255',
@@ -29,7 +31,6 @@ class TahunAkademikController extends Controller
             'tanggal_selesai' => 'nullable|date',
             'is_active' => 'boolean',
         ]);
-        $data['is_active'] = ($data['is_active'] ?? false);
 
         TahunAkademik::create($data);
 
@@ -43,6 +44,8 @@ class TahunAkademikController extends Controller
 
     public function update(Request $request, TahunAkademik $tahunAkademik): RedirectResponse
     {
+        $request->merge(['is_active' => $request->boolean('is_active')]);
+
         $data = $request->validate([
             'kode' => 'required|string|max:20|unique:tahun_akademik,kode,'.$tahunAkademik->id,
             'nama' => 'required|string|max:255',
@@ -50,7 +53,6 @@ class TahunAkademikController extends Controller
             'tanggal_selesai' => 'nullable|date',
             'is_active' => 'boolean',
         ]);
-        $data['is_active'] = ($data['is_active'] ?? false);
 
         $tahunAkademik->update($data);
 

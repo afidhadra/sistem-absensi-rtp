@@ -26,7 +26,7 @@
     </div>
     <label class="label cursor-pointer max-w-2xl mb-4">
         <span class="label-text text-xs">Aktif</span>
-        <input type="checkbox" name="is_active" class="toggle toggle-primary" @if (old('is_active', $item->is_active ?? false)) checked @endif>
+        <input type="checkbox" name="is_active" value="1" class="toggle toggle-primary" @if (old('is_active', $item->is_active ?? false)) checked @endif>
     </label>
     <x-form-actions :cancelRoute="route('admin.tahun-akademik.index')" />
 </div></div></form>
